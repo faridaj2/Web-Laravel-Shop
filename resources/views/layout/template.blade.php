@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Semua Untuk Koslow ygy</title>
+    <title>{{ $title }}</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,10 +21,10 @@
             class="container w-11/12 md:w-10/12 px-2 flex justify-between items-center text-color1 font-bold mx-auto py-3 my-2 mt-0">
             <span>PT. SARO SARA SEMESTA</span>
             <div class="hidden md:flex gap-3 font-normal items-center">
-                <a href="" class="">Beranda</a>
-                <a href="" class="nav-active">Produk</a>
-                <a href="">Galeri</a>
-                <a href="">Tentang</a>
+                <a href="/" class="@if ($title == 'Home') nav-active @endIf">Beranda</a>
+                <a href="/produk" class="@if ($title == 'Produk') nav-active @endIf">Produk</a>
+                <a href="/galeri" class="@if ($title == 'Galeri') nav-active @endIf">Galeri</a>
+                <a href="/about" class="@if ($title == 'Tentang') nav-active @endIf">Tentang</a>
             </div>
             <button onclick="navBuka()" class="w-7  py-3 my-2 flex flex-col gap-1 md:hidden">
                 <div class="bg-color1 h-[3px] w-full origin-right duration-75 "></div>
@@ -40,10 +40,14 @@
             <div class="text-sm text-stone-700 pt-4 ">
                 <b class="pl-4 text-[12px]">Menu</b>
                 <ul class="font-normal text-stone-600 text-[10px] w-full">
-                    <li class="m-2 py-1 mr-0 menu-active"><a class="pl-4" href="">Beranda</a></li>
-                    <li class="m-2 py-1 mr-0"><a class="pl-4" href="">Produk</a></li>
-                    <li class="m-2 py-1 mr-0"><a class="pl-4" href="">Galeri</a></li>
-                    <li class="m-2 py-1 mr-0"><a class="pl-4" href="">Tentang</a></li>
+                    <li class="m-2 py-1 mr-0 @if ($title == 'Home') menu-active @endIf"><a class="pl-4"
+                            href="/">Beranda</a></li>
+                    <li class="m-2 py-1 mr-0 @if ($title == 'Produk') menu-active @endIf"><a class="pl-4"
+                            href="/produk">Produk</a></li>
+                    <li class="m-2 py-1 mr-0 @if ($title == 'Galeri') menu-active @endIf"><a class="pl-4"
+                            href="/galeri">Galeri</a></li>
+                    <li class="m-2 py-1 mr-0 @if ($title == 'Tentang') menu-active @endIf"><a class="pl-4"
+                            href="/about">Tentang</a></li>
                 </ul>
 
             </div>
@@ -64,6 +68,7 @@
 
         <div class=" text-stone-600">
             <!-- Start Slideshow -->
+        
             <div class="overflow-hidden rounded w-full relative">
                 <figure id="slider" class="flex duration-75 left-0">
                     <img class="w-full hidden" src="https://picsum.photos/1024/300?random=1" alt="">
@@ -76,6 +81,7 @@
                     <button class="opacity-50 hover:opacity-100" onclick="right()">&#9654</button>
                 </div>
             </div>
+            
             <!-- EndSlide -->
 
             <!-- Content -->
