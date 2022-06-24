@@ -18,3 +18,5 @@ Route::get('/', [WebController::class, 'index']);
 Route::get('/produk', [WebController::class, 'produk']);
 Route::get('/galeri', [WebController::class, 'galeri']);
 Route::get('/about', [WebController::class, 'about']);
+
+Route::get('/admin', [WebController::class, 'admin']);

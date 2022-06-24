@@ -19,4 +19,18 @@ class WebController extends Controller
         ];
         return view('produk', $data);
     }
+
+    public function galeri(){
+        $data = [
+            'title' => 'Galeri',
+        ];
+        return view('galeri', $data);
+    }
+
+    public function admin(){
+        $data = [
+            'title' => 'admin',
+        ];
+        return view('dashboard.produk', $data);
+    }
 }
