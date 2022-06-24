@@ -129,6 +129,7 @@
                 }
                 slider.children[indexOf].classList.remove('hidden');
             }
+
             function left() {
                 indexOf -= 1;
                 for (let i = 0; i < slider.children.length; i++) {
@@ -141,9 +142,6 @@
             }
 
             setInterval(right, 5000);
-
-
-
         </script>
 </body>
 
