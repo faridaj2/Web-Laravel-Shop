@@ -68,7 +68,7 @@
 
         <div class=" text-stone-600">
             <!-- Start Slideshow -->
-        
+
             <div class="overflow-hidden rounded w-full relative">
                 <figure id="slider" class="flex duration-75 left-0">
                     <img class="w-full hidden" src="https://picsum.photos/1024/300?random=1" alt="">
@@ -81,7 +81,7 @@
                     <button class="opacity-50 hover:opacity-100" onclick="right()">&#9654</button>
                 </div>
             </div>
-            
+
             <!-- EndSlide -->
 
             <!-- Content -->
