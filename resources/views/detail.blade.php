@@ -2,25 +2,23 @@
 
 @section('container')
     <div>
-        <div class="font-bold text-stone-700 py-2 pt-7">Nama Produk</div>
+        <div class="font-bold text-stone-700 py-2 pt-7">{{ $post['nama'] }}</div>
         <div class="bg-black rounded-t-md overflow-hidden shadow border-8 border-white">
-            <img id="image" class="w-full h-96 object-contain" src="https://picsum.photos/id/1/400/300" alt="" />
+            <img id="image" class="w-full h-96 object-contain" src="{{ $post['image'][0] }}" alt="" />
         </div>
         <div class="flex justify-center shadow border-8 border-white rounded-b-md">
             <div class="mt-3 px-7 relative flex h-[100px] overflow-x-scroll">
-                <img class="opacity-70 hover:opacity-100" onclick="ganti(this)" src="https://picsum.photos/id/1/400/300"
+                @foreach ($post['image'] as $img)
+                    
+               
+                <img class="opacity-70 hover:opacity-100" onclick="ganti(this)" src="{{ $img }}"
                     alt="" />
-                <img class="opacity-70 hover:opacity-100" onclick="ganti(this)" src="https://picsum.photos/id/2/400/300"
-                    alt="" />
-                <img class="opacity-70 hover:opacity-100" onclick="ganti(this)" src="https://picsum.photos/id/3/400/300"
-                    alt="" />
-                <img class="opacity-70 hover:opacity-100" onclick="ganti(this)" src="https://picsum.photos/id/4/400/300"
-                    alt="" />
+                    @endforeach
             </div>
         </div>
         <div class="flex justify-between py-5">
             <div class="text-white font-bold bg-blue-500 p-2 rounded-xl shadow px-4 hover:bg-blue-700">
-                Rp. 23.000
+                {{ $post['harga'] }}
             </div>
             <a href="" class="text-white font-bold bg-blue-500 p-2 rounded-xl shadow px-4 hover:bg-blue-700">
                 Pesan Sekarang
@@ -52,32 +50,17 @@
         <div class="produk">
 
             <div id="deskripsi" class="text-sm nunito">
-                <p>
-                    Deskripsi
-                </p>
-                <p>Tidak perlu membutuhkan tempat yang luas</p>
+                {!! $post['deskripsi'] !!}
             </div>
             <div id="fitur" class="text-sm nunito hidden">
-                <p>
-                    Fitur
-                </p>
+                {!! $post['fitur'] !!}
 
             </div>
             <div id="spesifikasi" class="text-sm nunito hidden">
-                <p>
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                    Consequuntur, magni.
-                </p>
-                <p>Tidak perlu membutuhkan tempat yang luas</p>
-                <p>Spesifikasi</p>Q
+                {!! $post['spek'] !!}
             </div>
             <div id="syarat" class="text-sm nunito hidden">
-                <p>Syarat</p>
-                <p>
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                    Consequuntur, magni.
-                </p>
-                <p>Tidak perlu membutuhkan tempat yang luas</p>
+                {!! $post['syarat'] !!}
             </div>
 
         </div>

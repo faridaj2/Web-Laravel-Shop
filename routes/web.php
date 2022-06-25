@@ -18,5 +18,12 @@ Route::get('/', [WebController::class, 'index']);
 Route::get('/produk', [WebController::class, 'produk']);
 Route::get('/galeri', [WebController::class, 'galeri']);
 Route::get('/about', [WebController::class, 'about']);
+Route::get('/detail/{slug}', [WebController::class, 'detail']);
 
-Route::get('/admin', [WebController::class, 'admin']);
+#
+
+Route::get('/admin', [WebController::class, 'slideshow_']);
+Route::get('/admin/kategori', [WebController::class, 'kategori_']);
+Route::get('/admin/produk', [WebController::class, 'produk_']);
+Route::get('/admin/info', [WebController::class, 'info_']);
+Route::get('/admin/galeri', [WebController::class, 'galeri_']);
