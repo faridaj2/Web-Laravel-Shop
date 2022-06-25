@@ -20,10 +20,16 @@ Route::get('/galeri', [WebController::class, 'galeri']);
 Route::get('/about', [WebController::class, 'about']);
 Route::get('/detail/{slug}', [WebController::class, 'detail']);
 
-#
+#Mengakses Admin Page
 
 Route::get('/admin', [WebController::class, 'slideshow_']);
 Route::get('/admin/kategori', [WebController::class, 'kategori_']);
 Route::get('/admin/produk', [WebController::class, 'produk_']);
 Route::get('/admin/info', [WebController::class, 'info_']);
 Route::get('/admin/galeri', [WebController::class, 'galeri_']);
+
+#Mengakses Model Fitur
+Route::post('/admin', [WebController::class, 'slideAdd']);
+Route::get('/admin/delete/{id}', [WebController::class, 'slideDelete']);
+Route::post('/admin/kategori', [WebController::class, 'kategoriUpdate']);
+Route::get('/admin/kategori/delete/{id}', [WebController::class, 'hapusKategori']);

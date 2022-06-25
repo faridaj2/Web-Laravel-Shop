@@ -55,8 +55,12 @@
             <div class="text-sm text-stone-700 pt-4 ">
                 <b class="pl-4 text-[12px]">Kategori</b>
                 <ul class="font-normal text-stone-600 text-[10px] w-full">
-                    <li class="m-2 py-1 mr-0"><a class="pl-4" href="">Kategori 1</a></li>
-                    <li class="m-2 py-1 mr-0"><a class="pl-4" href="">Kategori 2</a></li>
+                    @foreach ($kategori as $kate)
+                        
+                    
+                    <li class="m-2 py-1 mr-0"><a class="pl-4" href="">{{ $kate->categories }}</a></li>
+                    @endforeach
+                    
                 </ul>
 
             </div>
