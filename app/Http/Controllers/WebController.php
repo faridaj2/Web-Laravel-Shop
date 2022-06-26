@@ -8,6 +8,8 @@ use App\Models\Slideshow;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
+use function GuzzleHttp\json_decode;
+
 class WebController extends Controller
 {
     public function index(){
@@ -32,8 +34,11 @@ class WebController extends Controller
 
     public function detail($slug){
         $data = [
-            'title' => 'Produk',
-            'post' => Product::detail($slug),
+            'title' => 'Detail ' . Product::firstWhere('id', $slug)->product_name,
+            'post' => Product::firstWhere('id', $slug),
+            'kategori' => Category::all(),
+            'slide' => Slideshow::all(),
+
         ];
         return view('detail', $data);
     }
@@ -70,6 +75,8 @@ class WebController extends Controller
     public function produk_(){
         $data = [
             'title' => 'Produk',
+            'kategori' => Category::all(),
+            'produk' => Product::all()
         ];
         return view('dashboard.produk', $data);
     }
@@ -117,6 +124,37 @@ class WebController extends Controller
 
         Category::destroy($request);
         return self::kategori_();
+
+    }
+    public function produkAdd(Request $r){
+        
+        $imageName = [];
+
+        foreach($r->file('image') as $image){
+            $image->store('public/productImage');
+            array_push($imageName, $image->hashName());
+        }
+
+        
+        
+        $kategori = Product::create([
+            'category_id' => $r->category,
+            'product_name' => $r->name,
+            'url_foto' => json_encode($imageName),
+            'harga' => $r->price,
+            'deskripsi' => $r->description,
+            'fitur' => $r->features,
+            'spek' => $r->spec,
+            'syarat' => $r->term
+        ]);
+
+        return redirect('/admin/produk');
+
+    }
+    public function produkDelete($request){
+
+        Product::destroy($request);
+        return redirect('/admin/produk');
 
     }
 

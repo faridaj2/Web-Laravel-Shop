@@ -5,10 +5,10 @@
         <div class=" hidden md:block col-span-1">
             <div class="text-left w-full font-bold mt-10">Kategori</div>
             <div class="mt-5 flex flex-col">
-                <a href="" class="border-b border-solid p-2 mr-3 hover:bg-gray-200 bg-gray-200">Kategori 1</a>
-                <a href="" class="border-b border-solid p-2 mr-3 hover:bg-gray-200">Kategori 1</a>
-                <a href="" class="border-b border-solid p-2 mr-3 hover:bg-gray-200">Kategori 1</a>
-                <a href="" class="border-b border-solid p-2 mr-3 hover:bg-gray-200">Kategori 1</a>
+                @foreach ($kategori as $kate)
+                <a href="" class="border-b border-solid p-2 mr-3 hover:bg-gray-200">{{ $kate->categories }}</a>
+                @endforeach
+                
             </div>
         </div>
         <div class="col-span-3">

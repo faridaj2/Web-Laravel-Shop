@@ -1,24 +1,28 @@
 @extends('layout.template')
 
 @section('container')
+    @php
+        $img = json_decode($post->url_foto);
+    @endphp
     <div>
-        <div class="font-bold text-stone-700 py-2 pt-7">{{ $post['nama'] }}</div>
+        <div class="font-bold text-stone-700 py-2 pt-7">{{ $post->product_name }}</div>
         <div class="bg-black rounded-t-md overflow-hidden shadow border-8 border-white">
-            <img id="image" class="w-full h-96 object-contain" src="{{ $post['image'][0] }}" alt="" />
+            <img id="image" class="w-full h-96 object-contain" src="{{ asset('/storage/productImage/'.json_decode($post->url_foto)[0]) }}" alt="" />
         </div>
         <div class="flex justify-center shadow border-8 border-white rounded-b-md">
             <div class="mt-3 px-7 relative flex h-[100px] overflow-x-scroll">
-                @foreach ($post['image'] as $img)
+                
+                @foreach ( $img as $img)
                     
                
-                <img class="opacity-70 hover:opacity-100" onclick="ganti(this)" src="{{ $img }}"
+                <img class="opacity-70 hover:opacity-100" onclick="ganti(this)" src="{{ asset('/storage/productImage/'.$img) }}"
                     alt="" />
                     @endforeach
             </div>
         </div>
         <div class="flex justify-between py-5">
             <div class="text-white font-bold bg-blue-500 p-2 rounded-xl shadow px-4 hover:bg-blue-700">
-                {{ $post['harga'] }}
+               Rp. {{ $post->harga }}
             </div>
             <a href="" class="text-white font-bold bg-blue-500 p-2 rounded-xl shadow px-4 hover:bg-blue-700">
                 Pesan Sekarang
@@ -50,7 +54,7 @@
         <div class="produk">
 
             <div id="deskripsi" class="text-sm nunito">
-                {!! $post['deskripsi'] !!}
+                {!! $post->deskripsi !!}
             </div>
             <div id="fitur" class="text-sm nunito hidden">
                 {!! $post['fitur'] !!}
@@ -69,7 +73,6 @@
         <div class="font-bold text-stone-700 py-2 pt-7">
             Peralatan Cuci & Aksesoris
         </div>
-
         <div class="mt-3 grid gap-5 p-5 md:p-0 grid-cols-1 md:grid-cols-4 lg:grid-cols-4 mn:grid-cols-1">
             <div class="h-96 w-full rounded-3xl shadow-lg overflow-hidden grid grid-cols-1">
                 <div class="h-48 overflow-hidden">

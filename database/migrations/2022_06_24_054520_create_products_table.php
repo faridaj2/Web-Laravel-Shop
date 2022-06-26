@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('category_id');
             $table->string('product_name');
-            $table->string('url_foto');
+            $table->text('url_foto');
             $table->decimal('harga');
             $table->text('deskripsi');
             $table->text('fitur');

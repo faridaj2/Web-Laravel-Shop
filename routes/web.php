@@ -33,3 +33,5 @@ Route::post('/admin', [WebController::class, 'slideAdd']);
 Route::get('/admin/delete/{id}', [WebController::class, 'slideDelete']);
 Route::post('/admin/kategori', [WebController::class, 'kategoriUpdate']);
 Route::get('/admin/kategori/delete/{id}', [WebController::class, 'hapusKategori']);
+Route::post('/admin/produk', [WebController::class, 'produkAdd']);
+Route::get('/admin/produk/delete/{id}', [WebController::class, 'produkDelete']);
