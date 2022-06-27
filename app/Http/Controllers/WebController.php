@@ -77,6 +77,16 @@ class WebController extends Controller
         ];
         return view('kategori', $data);
     }
+    public function about(){
+        $data = [
+            'title' => 'Tentang Perusahaan',
+            'slide' => Slideshow::all(),
+            'galeri' => gallery::all(),
+            'kategori' => Category::all(),
+
+        ];
+        return view('about', $data);
+    }
 
     //admin
 
