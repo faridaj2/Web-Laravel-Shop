@@ -227,7 +227,11 @@ class WebController extends Controller
         gallery::destroy($slug);
         return redirect('/admin/galeri');
     }
+    //LOGIN PAGE
 
+    public function login(){
+        return view('login');
+    }
     
 
     
