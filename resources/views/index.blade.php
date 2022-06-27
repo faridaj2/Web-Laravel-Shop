@@ -44,7 +44,7 @@
             <div class="rounded overflow-hidden relative shadow-lg">
                 <img class="w-full h-52 object-cover" src="{{ asset('/storage/galeri/'.$item->image) }}" alt="">
                 <div
-                    class="bg-gradient-to-r from-yellow-500/40 to-transparent w-1/2 px-2 font-bold text-white absolute top-3 left-3 rounded">{{ $item->captopn }}</div>
+                    class="bg-gradient-to-r from-yellow-500/40 to-transparent w-1/2 px-2 font-bold text-white absolute top-3 left-3 rounded">{{ $item->caption }}</div>
             </div>
         @endforeach
     </div>
