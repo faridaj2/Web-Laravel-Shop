@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\gallery;
 use App\Models\Product;
 use App\Models\Slideshow;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 use function GuzzleHttp\json_decode;
 
@@ -18,6 +21,7 @@ class WebController extends Controller
             'kategori' => Category::all(),
             'slide' => Slideshow::all(),
             'post' => Product::all(),
+            'galeri' => gallery::all()
         ];
         return view('index', $data);
     }
@@ -33,11 +37,15 @@ class WebController extends Controller
     }
 
     public function detail($slug){
+
         $data = [
-            'title' => 'Detail ' . Product::firstWhere('id', $slug)->product_name,
-            'post' => Product::firstWhere('id', $slug),
+            'title' => 'Detail ' . Product::firstWhere('slug_name', $slug)->product_name,
+            'post' => Product::firstWhere('slug_name', $slug),
             'kategori' => Category::all(),
             'slide' => Slideshow::all(),
+            'kategori_detail' => Product::firstWhere('slug_name', $slug)->category->categories,
+            'kategori_isi' => Category::firstWhere('id', Product::firstWhere('slug_name', $slug)->category->id)
+            
 
         ];
         return view('detail', $data);
@@ -46,6 +54,9 @@ class WebController extends Controller
     public function galeri(){
         $data = [
             'title' => 'Galeri',
+            'slide' => Slideshow::all(),
+            'kategori' => Category::all(),
+            'galeri' => gallery::all()
         ];
         return view('galeri', $data);
     }
@@ -54,6 +65,17 @@ class WebController extends Controller
             'title' => 'Galeri',
         ];
         return view('galeri', $data);
+    }
+    public function kategori($slug){
+        $data = [
+            'title' => 'Kategori',
+            'slide' => Slideshow::all(),
+            'kategori' => Category::all(),
+            'post' => Category::firstWhere('slug', $slug)->product,
+            'kategori_nama' => Category::firstWhere('slug', $slug)
+
+        ];
+        return view('kategori', $data);
     }
 
     //admin
@@ -89,8 +111,9 @@ class WebController extends Controller
     public function galeri_(){
         $data = [
             'title' => 'Galeri',
+            'galeri' => gallery::all()
         ];
-        return view('dashboard.produk', $data);
+        return view('dashboard.galeri', $data);
     }
 
     //admin model
@@ -106,16 +129,24 @@ class WebController extends Controller
         return self::slideshow_();
 
     }
-    public function slideDelete($request){
+    public function slideDelete($slug){
+        $imageName = Slideshow::firstWhere('id', $slug)->nama;
+        Storage::delete('public/slide/'.$imageName);
 
-        Slideshow::destroy($request);
+        Slideshow::destroy($slug);
+
         return self::slideshow_();
 
     }
 
     public function kategoriUpdate(Request $request){
-        $kategori = Category::create([
+        $slug = Str::slug($request->kategori);
+        if(Category::firstWhere('slug', $slug)){
+            $slug = Str::slug($request->kategori.' '.rand(1,10));
+        }
+        Category::create([
             'categories' => $request->kategori,
+            'slug' => $slug
         ]);
         return self::kategori_();
 
@@ -127,6 +158,10 @@ class WebController extends Controller
 
     }
     public function produkAdd(Request $r){
+        $slug = Str::slug($r->name);
+        if(Product::firstWhere('slug_name', $slug)){
+            $slug = Str::slug($r->name." ".rand(0,10));
+        }
         
         $imageName = [];
 
@@ -137,9 +172,10 @@ class WebController extends Controller
 
         
         
-        $kategori = Product::create([
+        Product::create([
             'category_id' => $r->category,
             'product_name' => $r->name,
+            'slug_name' => $slug,
             'url_foto' => json_encode($imageName),
             'harga' => $r->price,
             'deskripsi' => $r->description,
@@ -152,11 +188,37 @@ class WebController extends Controller
 
     }
     public function produkDelete($request){
+        $imageName = Product::firstWhere('id', $request)->url_foto;
+        $image = json_decode($imageName);
+        foreach($image as $img){
+            Storage::delete('public/productImage/'.$img);
+        }
+
 
         Product::destroy($request);
         return redirect('/admin/produk');
 
     }
+    public function galeriAdd(Request $request){
+        gallery::create([
+            'image' => $request->file('image')->hashName(),
+            'caption' => $request->caption
+        ]);
+
+        $request->file('image')->store('public/galeri/');
+
+        return redirect('/admin/galeri');
+        
+
+    }
+    public function galeriDelete($slug){
+        $imageName = gallery::firstWhere('id', $slug)->image;
+        Storage::delete('public/galeri/'.$imageName);
+        gallery::destroy($slug);
+        return redirect('/admin/galeri');
+    }
+
+    
 
     
 }

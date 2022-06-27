@@ -34,7 +34,7 @@
             <input class="inline-block mt-1 w-full md:w-1/5 border-2 border-stone-400 border-solid p-2 rounded-lg"
                 type="text" placeholder="Nama Produk" name="name">
             <input class="inline-block mt-1 w-full md:w-1/5 border-2 border-stone-400 border-solid p-2 rounded-lg"
-                type="text" placeholder="Harga" name="price">
+                type="number" placeholder="Harga" name="price">
             <select name="category" id=""
                 class="inline-block mt-1 w-full md:w-1/5 border-2 border-stone-400 border-solid p-2 rounded-lg">
                 @foreach ($kategori as $item)
