@@ -20,7 +20,7 @@
             <ul id="slideText" class="list-decimal pl-5">
 
             </ul>
-            <form class="overflow-hidden flex gap-2" action="/admin" method="POST" enctype="multipart/form-data">
+            <form class="overflow-hidden flex gap-2 rounded" action="/admin" method="POST" enctype="multipart/form-data">
                 @csrf
                 <label id=""
                     class=" p-2 custom-file-input inline-block w-1/2 text-sm rounded-lg border border-stone-300 cursor-pointer "

@@ -6,10 +6,14 @@ use App\Models\Category;
 use App\Models\gallery;
 use App\Models\Product;
 use App\Models\Slideshow;
+use App\Models\User;
+use Illuminate\Auth\Events\Attempting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 use function GuzzleHttp\json_decode;
 
@@ -231,6 +235,23 @@ class WebController extends Controller
 
     public function login(){
         return view('login');
+    }
+    public function login_(Request $request){
+        $credentials = $request->validate([
+            'email' => ['required'],
+            'password' => ['required'],
+        ]);
+        
+        if(Auth::attempt($credentials)){
+            $request->session()->regenerate();
+ 
+            return redirect()->intended('/admin');
+        }
+        return back();
+    }
+    public function logout(){
+        Auth::logout();
+        return redirect('/');
     }
     
 
