@@ -7,6 +7,7 @@ use App\Models\gallery;
 use App\Models\Product;
 use App\Models\Slideshow;
 use App\Models\User;
+use Illuminate\Support\Facades\File;
 use Illuminate\Auth\Events\Attempting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -134,7 +135,7 @@ class WebController extends Controller
 
     public function slideAdd(Request $request){
         foreach($request->file('gambar') as $item){
-            $item->store('public/slide');
+            $item->store('public/slide',['disk' => 'my_file']);
             Slideshow::create([
                 'nama' => $item->hashName(),
             ]);
@@ -145,7 +146,7 @@ class WebController extends Controller
     }
     public function slideDelete($slug){
         $imageName = Slideshow::firstWhere('id', $slug)->nama;
-        Storage::delete('public/slide/'.$imageName);
+        File::delete(public_path('/public/slide/'.$imageName));
 
         Slideshow::destroy($slug);
 
@@ -180,7 +181,7 @@ class WebController extends Controller
         $imageName = [];
 
         foreach($r->file('image') as $image){
-            $image->store('public/productImage');
+            $image->store('public/productImage', ['disk' => 'my_file']);
             array_push($imageName, $image->hashName());
         }
 
@@ -205,7 +206,7 @@ class WebController extends Controller
         $imageName = Product::firstWhere('id', $request)->url_foto;
         $image = json_decode($imageName);
         foreach($image as $img){
-            Storage::delete('public/productImage/'.$img);
+            File::delete(public_path('public/productImage/').$img);
         }
 
 
@@ -219,7 +220,7 @@ class WebController extends Controller
             'caption' => $request->caption
         ]);
 
-        $request->file('image')->store('public/galeri/');
+        $request->file('image')->store('public/galeri/', ['disk'=>'my_file']);
 
         return redirect('/admin/galeri');
         
@@ -227,7 +228,7 @@ class WebController extends Controller
     }
     public function galeriDelete($slug){
         $imageName = gallery::firstWhere('id', $slug)->image;
-        Storage::delete('public/galeri/'.$imageName);
+        File::delete(public_path('public/galeri/').$imageName);
         gallery::destroy($slug);
         return redirect('/admin/galeri');
     }

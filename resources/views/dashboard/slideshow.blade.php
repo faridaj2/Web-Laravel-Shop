@@ -7,7 +7,7 @@
         @foreach ($slide as $item)
             <div class="relative mb-2 rounded-md shadow-md overflow-hidden">
 
-                <img class="max-h-[300px] object-contain" src="{{ asset('storage/slide/' . $item->nama) }}" alt="">
+                <img class="max-h-[300px] object-contain" src="{{ asset('public/slide/' . $item->nama) }}" alt="">
 
                 <div class="absolute top-3 right-3">
 

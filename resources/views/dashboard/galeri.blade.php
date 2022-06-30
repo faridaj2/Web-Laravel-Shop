@@ -12,7 +12,7 @@
             @endif
             @foreach ($galeri as $item)
                 <div class="bg-white rounded-md shadow-md relative">
-                    <img class="max-h-[300px] object-contain" src="{{ asset('/storage/galeri/' . $item->image) }}"
+                    <img class="max-h-[300px] object-contain" src="{{ asset('/public/galeri/' . $item->image) }}"
                         alt="">
                     <div class=" absolute top-2 left-3 w-full">
                         <span class="text-white bg-black p-2">{{ $item->caption }}</span>

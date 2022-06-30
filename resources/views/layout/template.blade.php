@@ -75,7 +75,7 @@
             <div class="overflow-hidden rounded w-full relative">
                 <figure id="slider" class="flex duration-75 left-0">
                     @foreach ($slide as $item)
-                        <img class="w-full hidden" src="{{ asset('storage/slide/' . $item->nama) }}" alt="">
+                        <img class="w-full hidden" src="{{ asset('public/slide/' . $item->nama) }}" alt="">
                     @endforeach
                 </figure>
                 <div

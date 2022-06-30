@@ -8,14 +8,14 @@
         <div class="font-bold text-stone-700 py-2 pt-7">{{ $post->product_name }}</div>
         <div class="bg-black rounded-t-md overflow-hidden shadow border-8 border-white">
             <img id="image" class="w-full h-96 object-contain"
-                src="{{ asset('/storage/productImage/' . json_decode($post->url_foto)[0]) }}" alt="" />
+                src="{{ asset('/public/productImage/' . json_decode($post->url_foto)[0]) }}" alt="" />
         </div>
         <div class="flex justify-center shadow border-8 border-white rounded-b-md">
             <div class="mt-3 px-7 relative flex h-[100px] overflow-x-scroll">
 
                 @foreach ($img as $img)
                     <img class="opacity-70 hover:opacity-100" onclick="ganti(this)"
-                        src="{{ asset('/storage/productImage/' . $img) }}" alt="" />
+                        src="{{ asset('/public/productImage/' . $img) }}" alt="" />
                 @endforeach
             </div>
         </div>
@@ -78,7 +78,7 @@
             @foreach ($kategori_isi->product as $item)
                 <div class="h-96 w-full rounded shadow-lg overflow-hidden grid grid-cols-1">
                     <div class="h-48 overflow-hidden">
-                        <img class="object-cover h-full w-full" src="{{ asset('/storage/productImage/'. json_decode($item->url_foto)[0])  }}" alt="" />
+                        <img class="object-cover h-full w-full" src="{{ asset('/public/productImage/'. json_decode($item->url_foto)[0])  }}" alt="" />
                     </div>
                     <div class="bg-white p-3 h-48 relative">
                         <div class="font-bold mb-2 trct">

@@ -21,7 +21,7 @@
                     <div class="h-96 w-full rounded shadow-lg overflow-hidden grid grid-cols-1">
                         <div class="h-48 overflow-hidden">
                             <img class="object-cover h-full w-full"
-                                src="{{ asset('/storage/productImage/' . json_decode($item->url_foto)[0]) }}"
+                                src="{{ asset('/public/productImage/' . json_decode($item->url_foto)[0]) }}"
                                 alt="">
                         </div>
                         <div class="bg-white p-3 h-48 relative">
@@ -42,7 +42,7 @@
     <div class="rounded w-full  grid grid-cols-1 md:grid-cols-3 gap-5 mt-5">
         @foreach ($galeri as $item)
             <div class="rounded overflow-hidden relative shadow-lg">
-                <img class="w-full h-52 object-cover" src="{{ asset('/storage/galeri/'.$item->image) }}" alt="">
+                <img class="w-full h-52 object-cover" src="{{ asset('/public/galeri/'.$item->image) }}" alt="">
                 <div
                     class="bg-gradient-to-r from-yellow-500/40 to-transparent w-1/2 px-2 font-bold text-white absolute top-3 left-3 rounded">{{ $item->caption }}</div>
             </div>

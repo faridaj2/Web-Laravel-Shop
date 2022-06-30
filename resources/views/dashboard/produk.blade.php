@@ -9,7 +9,7 @@
                     <div class="h-96 w-full rounded-3xl shadow-lg overflow-hidden grid grid-cols-1">
                         <div class="h-48 overflow-hidden">
                             <img class="object-cover h-full w-full"
-                                src="{{ asset('/storage/productImage/' . json_decode($item->url_foto)[0]) }}"
+                                src="{{ asset('public/productImage/' . json_decode($item->url_foto)[0]) }}"
                                 alt="">
                         </div>
                         <div class="bg-white p-3 h-48 relative">
